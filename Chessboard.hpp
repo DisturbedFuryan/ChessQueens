@@ -5,11 +5,14 @@
 class CChessboard {
 public:
     CChessboard(unsigned n);
+    ~CChessboard();
+
+    void show() const;
 
 private:
-    unsigned m_n;
+    const unsigned m_n;
 
-    bool* m_fields;
+    bool** m_fields;
 };
 //==================================================================================================
 
