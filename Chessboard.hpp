@@ -4,7 +4,7 @@
 //==================================================================================================
 class CChessboard {
 public:
-    CChessboard(unsigned n);
+    CChessboard(const unsigned n);
     ~CChessboard();
 
     void show() const;
