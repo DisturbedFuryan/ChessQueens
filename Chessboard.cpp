@@ -5,16 +5,19 @@
 using namespace std;
 
 CChessboard::CChessboard(const int n) : m_n(n) {
+    // Create a new array to represent the chessboard.
     m_fields = new bool*[n];
     for (int i = 0; i < n; ++i)
         m_fields[i] = new bool[n];
 
+    // Fill the array.
     for (int i = 0; i < m_n; ++i)
         for (int j = 0; j < m_n; ++j)
             m_fields[i][j] = false;
 }
 
 CChessboard::~CChessboard() {
+    // Remove the array from memory.
     for (int i = 0; i < m_n; ++i)
         delete [] m_fields[i];
     delete [] m_fields;
