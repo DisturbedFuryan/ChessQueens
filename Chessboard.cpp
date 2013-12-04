@@ -23,12 +23,34 @@ CChessboard::~CChessboard() {
     delete [] m_fields;
 }
 
+void CChessboard::putQueen(int row, int& counter) {
+    for (int i = 0; i < m_n; ++i) {
+        if (fieldIsFree(CVector<int>(i, row))) {
+            // The field is free? Great, let's set here the queen.
+            m_fields[row][i] = true;
+            
+            if (row < (m_n - 1))
+                putQueen(row + 1, counter);
+            else {
+                // Print the solution.
+                cout << counter << ": \n";
+                show();
+                ++counter;
+            }
+            
+            // Remove the queen from the field.
+            m_fields[row][i] = false;
+        }
+    }
+}
+
 void CChessboard::show() const {
     for (int i = 0; i < m_n; ++i) {
         for (int j = 0; j < m_n; ++j)
             cout << m_fields[i][j] << ' ';
         cout << endl;
     }
+    cout << endl;
 }
 
 bool CChessboard::fieldIsFree(const CVector<int> pos) const {
