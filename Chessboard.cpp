@@ -77,31 +77,23 @@ bool CChessboard::fieldIsFree(const CVector<int> pos) const {
 
     // ...to the northwest.
     checkpoint.set((pos.x - 1), (pos.y - 1));
-    while ((checkpoint.x > - 1) && (checkpoint.y > -1)) {
+    for ( ; (checkpoint.x > - 1) && (checkpoint.y > -1); --checkpoint.x, --checkpoint.y)
         if (m_fields[checkpoint.y][checkpoint.x]) return false;
-        --checkpoint.x; --checkpoint.y;
-    }
 
     // ...to the southwest.
     checkpoint.set((pos.x + 1), (pos.y + 1));
-    while ((checkpoint.x < m_n) && (checkpoint.y < m_n)) {
+    for ( ; (checkpoint.x < m_n) && (checkpoint.y < m_n); ++checkpoint.x, ++checkpoint.y)
         if (m_fields[checkpoint.y][checkpoint.x]) return false;
-        ++checkpoint.x; ++checkpoint.y;
-    }
 
     // ...to the northeast.
     checkpoint.set((pos.x + 1), (pos.y - 1));
-    while ((checkpoint.x < m_n) && (checkpoint.y > -1)) {
+    for ( ; (checkpoint.x < m_n) && (checkpoint.y > -1); ++checkpoint.x, --checkpoint.y)
         if (m_fields[checkpoint.y][checkpoint.x]) return false;
-        ++checkpoint.x; --checkpoint.y;
-    }
 
     // ...to the southeast.
     checkpoint.set((pos.x - 1), (pos.y + 1));
-    while ((checkpoint.x > -1) && (checkpoint.y < m_n)) {
+    for ( ; (checkpoint.x > -1) && (checkpoint.y < m_n); --checkpoint.x, ++checkpoint.y)
         if (m_fields[checkpoint.y][checkpoint.x]) return false;
-        --checkpoint.x; ++checkpoint.y;
-    }
 
     return true;
 }
